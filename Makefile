@@ -11,7 +11,7 @@ version:
 
 .PHONY: fix
 fix:
-	clang-format -i -style=file ./main/*.ino ./main/*.h
+	clang-format -i -style=file ./main/*.ino ./main/**/*.h
 
 .PHONY: help
 help:

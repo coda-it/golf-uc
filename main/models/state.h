@@ -1,3 +1,1 @@
-class State {
-    
-};
+class State {};
