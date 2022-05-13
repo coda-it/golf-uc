@@ -5,6 +5,7 @@
 #include "./views/counter.h"
 #include "./views/mainMenu.h"
 #include "./virtual/view.h"
+#include "./models/state.h";
 #include <U8g2lib.h>
 #include <Wire.h>
 
@@ -27,20 +28,20 @@ public:
     this->selectedView = views[0];
   }
 
-  void render(int isLeftBtnPressed, int isRightBtnPressed) {
+  void render(State *state) {
     u8g2.clearBuffer();
     u8g2.setFont(u8g2_font_ncenB08_tr);
 
-    if (isLeftBtnPressed) {
+    if (state->leftButton) {
       this->viewIndex =
           this->viewIndex == 0 ? VIEW_NUMBER - 1 : this->viewIndex - 1;
-    } else if (isRightBtnPressed) {
+    } else if (state->rightButton) {
       this->viewIndex =
           this->viewIndex == VIEW_NUMBER - 1 ? 0 : this->viewIndex + 1;
     }
 
     this->selectedView = views[this->viewIndex];
-    this->selectedView->render(isLeftBtnPressed, isRightBtnPressed);
+    this->selectedView->render(state);
 
     u8g2.sendBuffer();
   }
