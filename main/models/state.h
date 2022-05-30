@@ -7,12 +7,18 @@ public:
   int rightButton;
   int exitButton;
   int enterButton;
+  unsigned int points[16] = {0};
+  int level = 0;
 
   State(int lB, int rB, int exB, int enB) {
-    leftButton = lB;
-    rightButton = rB;
-    exitButton = exB;
-    enterButton = enB;
+    this->updateInputs(lB, rB, exB, enB);
+  }
+
+  void updateInputs(int lB, int rB, int exB, int enB) {
+    this->leftButton = lB;
+    this->rightButton = rB;
+    this->exitButton = exB;
+    this->enterButton = enB;
   }
 };
 
