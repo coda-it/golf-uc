@@ -3,8 +3,8 @@
 
 class AbstractRepository {
 public:
-  virtual void get() = 0;
-  virtual void set() = 0;
+  virtual void get(unsigned int *points) = 0;
+  virtual void set(unsigned int *points) = 0;
 };
 
 #endif /* H_REPOSITORY */
