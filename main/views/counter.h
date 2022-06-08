@@ -2,7 +2,7 @@
 #ifndef H_COUNTER_VIEW
 #define H_COUNTER_VIEW
 
-#include "../models/state.h";
+#include "../models/state.h"
 #include "../virtual/view.h"
 #include <U8g2lib.h>
 #include <string>
@@ -13,8 +13,12 @@ private:
 
 public:
   U8G2 *u8g2;
+  AbstractRepository *repository;
 
-  CounterView(U8G2 *u8g2) { this->u8g2 = u8g2; }
+  CounterView(U8G2 *u8g2, AbstractRepository *repository) {
+    this->u8g2 = u8g2;
+    this->repository = repository;
+  }
 
   void render(State *state) {
     std::string content[3] = {
@@ -32,10 +36,15 @@ public:
 
       content[1] = ">" + content[1];
     } else if (state->level == 2) {
-      if (state->leftButton) {
+      if (state->leftButton && state->rightButton) {
+        state->points[this->hole] = 0;
+        this->repository->set(state->points);
+      } else if (state->leftButton) {
         state->points[this->hole] -= 1;
+        this->repository->set(state->points);
       } else if (state->rightButton) {
         state->points[this->hole] += 1;
+        this->repository->set(state->points);
       }
 
       content[2] = ">" + content[2];

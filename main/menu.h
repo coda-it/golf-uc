@@ -2,12 +2,14 @@
 #ifndef H_MENU
 #define H_MENU
 
+#include <U8g2lib.h>
+#include <Wire.h>
+#include "./repositories/eeprom.h"
 #include "./views/counter.h"
 #include "./views/mainMenu.h"
 #include "./virtual/view.h"
-#include "./models/state.h";
-#include <U8g2lib.h>
-#include <Wire.h>
+#include "./virtual/repository.h"
+#include "./models/state.h"
 
 #define VIEW_NUMBER 2
 #define LEVEL_NUMBER 3
@@ -22,9 +24,10 @@ public:
 
   Menu() {
     u8g2.begin();
+    EepromRepository *eepromRepository = new EepromRepository();
 
-    this->views[0] = new MainMenuView(&u8g2);
-    this->views[1] = new CounterView(&u8g2);
+    this->views[0] = new MainMenuView(&u8g2, eepromRepository);
+    this->views[1] = new CounterView(&u8g2, eepromRepository);
 
     this->selectedView = views[0];
   }
