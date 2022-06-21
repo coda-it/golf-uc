@@ -1,9 +1,8 @@
-
 #ifndef H_EEPROM_REPOSITORY
 #define H_EEPROM_REPOSITORY
 
-#include "../constants.h"
-#include "../virtual/repository.h"
+#include "../../constants.h"
+#include "./repository.h"
 #include <EEPROM.h>
 
 class EepromRepository : public AbstractRepository {

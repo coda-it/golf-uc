@@ -4,12 +4,12 @@
 
 #include <U8g2lib.h>
 #include <Wire.h>
-#include "./repositories/eeprom.h"
+#include "./data/repositories/repository.h"
+#include "./data/repositories/eeprom.h"
+#include "./data/state/state.h"
 #include "./views/counter.h"
 #include "./views/mainMenu.h"
-#include "./virtual/view.h"
-#include "./virtual/repository.h"
-#include "./models/state.h"
+#include "./views/view.h"
 
 #define VIEW_NUMBER 2
 #define LEVEL_NUMBER 3

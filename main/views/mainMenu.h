@@ -2,8 +2,8 @@
 #ifndef H_MAIN_MENU_VIEW
 #define H_MAIN_MENU_VIEW
 
-#include "../models/state.h"
-#include "../virtual/view.h"
+#include "../data/state/state.h"
+#include "./view.h"
 #include <U8g2lib.h>
 
 class MainMenuView : public AbstractView {

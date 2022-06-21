@@ -1,8 +1,8 @@
 #ifndef H_VIEW
 #define H_VIEW
 
-#include "../models/state.h";
-#include "./repository.h";
+#include "../data/repositories/repository.h";
+#include "../data/state/state.h";
 #include <U8g2lib.h>
 
 class AbstractView {
