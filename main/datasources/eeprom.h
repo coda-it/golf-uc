@@ -1,11 +1,10 @@
-#ifndef H_EEPROM_REPOSITORY
-#define H_EEPROM_REPOSITORY
+#ifndef H_EEPROM_DATASOURCE
+#define H_EEPROM_DATASOURCE
 
-#include "../../constants.h"
-#include "./repository.h"
+#include "../constants.h"
 #include <EEPROM.h>
 
-class EepromRepository : public AbstractRepository {
+class EepromDataSource {
 private:
   unsigned int address = 0;
 
@@ -31,4 +30,4 @@ public:
   }
 };
 
-#endif /* H_EEPROM_REPOSITORY */
+#endif /* H_EEPROM_DATASOURCE */
