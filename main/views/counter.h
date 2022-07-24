@@ -2,8 +2,8 @@
 #ifndef H_COUNTER_VIEW
 #define H_COUNTER_VIEW
 
-#include "../models/state.h"
-#include "../virtual/view.h"
+#include "../state/state.h"
+#include "./abstract.h"
 #include <U8g2lib.h>
 #include <string>
 
@@ -51,7 +51,7 @@ public:
     }
 
     for (size_t i = 0; i < 3; i++) {
-      this->u8g2->drawStr(0, (i + 1) * 10, content[i].c_str());
+      this->u8g2->drawStr(0, 10 + (i + 1) * 10, content[i].c_str());
     }
   }
 };

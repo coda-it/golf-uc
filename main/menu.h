@@ -4,14 +4,14 @@
 
 #include <U8g2lib.h>
 #include <Wire.h>
-#include "./repositories/eeprom.h"
+#include "./repositories/store.h"
+#include "./state/state.h"
 #include "./views/counter.h"
 #include "./views/mainMenu.h"
-#include "./virtual/view.h"
-#include "./virtual/repository.h"
-#include "./models/state.h"
+#include "./views/settings.h"
+#include "./views/abstract.h"
 
-#define VIEW_NUMBER 2
+#define VIEW_NUMBER 3
 #define LEVEL_NUMBER 3
 
 U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE, D2, D1);
@@ -24,10 +24,11 @@ public:
 
   Menu() {
     u8g2.begin();
-    EepromRepository *eepromRepository = new EepromRepository();
+    StoreRepository *storeRepository = new StoreRepository();
 
-    this->views[0] = new MainMenuView(&u8g2, eepromRepository);
-    this->views[1] = new CounterView(&u8g2, eepromRepository);
+    this->views[0] = new MainMenuView(&u8g2, storeRepository);
+    this->views[1] = new CounterView(&u8g2, storeRepository);
+    this->views[2] = new SettingsView(&u8g2, storeRepository);
 
     this->selectedView = views[0];
   }
