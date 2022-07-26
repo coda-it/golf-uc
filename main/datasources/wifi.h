@@ -10,11 +10,8 @@ private:
 public:
   WifiDataSource() {}
 
-  int connect() {
-    char *ssid = "";
-    char *pass = "";
-
-    WiFi.begin(ssid, pass);
+  int connect(const char *ssid, const char *password) {
+    WiFi.begin(ssid, password);
     WiFi.mode(WIFI_STA);
 
     int retries = 200;
