@@ -5,6 +5,7 @@
 #include "../datasources/wifi.h"
 #include "../state/state.h"
 #include "./abstract.h"
+#include <ESP8266WiFi.h>
 #include <U8g2lib.h>
 
 class SettingsView : public AbstractView {
@@ -35,8 +36,10 @@ public:
                              : "") +
         "[" + this->password[passwordLength - 1] + "]";
 
-    std::string content[4] = {"Settings", network, password,
-                              "Connect: " + std::to_string(this->status)};
+    std::string connectionStatus = this->status == WL_CONNECTED ? "Yes" : "No";
+    std::string connection = "Is connected: " + connectionStatus;
+
+    std::string content[4] = {"Settings", network, password, connection};
 
     if (state->level == 0) {
       content[0] = ">" + content[0];
@@ -60,13 +63,14 @@ public:
       content[2] = ">" + content[2];
     } else if (state->level == 3) {
       if (state->rightButton) {
-        this->status = this->wifi->connect();
+        this->status =
+            this->wifi->connect(this->ssid.c_str(), this->password.c_str());
       }
 
       content[3] = ">" + content[3];
     }
 
-    for (size_t i = 0; i < 3; i++) {
+    for (size_t i = 0; i < 4; i++) {
       this->u8g2->drawStr(0, 10 + (i + 1) * 10, content[i].c_str());
     }
   }
