@@ -2,6 +2,7 @@
 #ifndef H_SETTINGS_VIEW
 #define H_SETTINGS_VIEW
 
+#include "../datasources/server.h"
 #include "../datasources/wifi.h"
 #include "../state/state.h"
 #include "./abstract.h"
@@ -13,6 +14,7 @@ public:
   U8G2 *u8g2;
   AbstractRepository *repository;
   WifiDataSource *wifi;
+  ServerDataSource *server;
   int status;
   std::string ssid = "A";
   std::string password = "A";
